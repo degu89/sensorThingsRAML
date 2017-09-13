@@ -1,0 +1,103 @@
+#%RAML 1.0 Library
+types:
+  postDatastream:
+    displayName: Post data structure
+    type: object
+    properties:
+      name:
+        type: string
+        required: true
+      description:
+        type: string
+        required: true
+      unitOfMeasurement:
+        type: object
+        required: true
+      observationType:
+        type: string
+        required: false
+        description: ValueCode
+      observedArea:
+        type: object
+        required: false
+        description: GeoJSON Polygon Object
+      phenomenonTime:
+        type: string
+        required: false
+        description: Time Interval (ISO 8601)
+      resultTime:
+        type: string
+        required: false
+        description: Time Interval (ISO 8601)
+
+      Thing:
+         type: object
+         required: true
+      ObservedProperty:
+        type: object
+        required: true
+      Sensor:
+        type: object
+        required: true
+      Observations:
+        type: object
+        required: false
+
+
+  getDatastreams:
+    displayName: thing
+    type: object
+    properties:
+      '@iot.count':
+        type: integer
+        required: true
+      '@iot.nextLink':
+        type: string
+        description: data
+        required: true
+      value:
+        type: getDatastream[]
+
+  getDatastream:
+    displayName: thing
+    type: object
+    properties:
+      '@iot.id': integer
+      '@iot.selfLink': string
+      name:
+        type: string
+        required: true
+      description:
+        type: string
+        required: true
+      unitOfMeasurement:
+        type: object
+        required: true
+      observationType:
+        type: string
+        required: false
+        description: ValueCode
+      observedArea:
+        type: object
+        required: false
+        description: GeoJSON Polygon Object
+      phenomenonTime:
+        type: string
+        required: false
+        description: Time Interval (ISO 8601)
+      resultTime:
+        type: string
+        required: false
+        description: Time Interval (ISO 8601)
+      'Thing@iot.navigationLink':
+        type: string #| Thing[]
+        required: true
+      'ObservedProperty@iot.navigationLink':
+        type: string #| ObservedProperty[]
+        required: true
+      'Sensor@iot.navigationLink':
+        type: string #| Sensor[]
+        required: true
+      'Observations@iot.navigationLink':
+        type: string #| Observations[]
+        required: false

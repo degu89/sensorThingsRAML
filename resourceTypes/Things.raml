@@ -1,0 +1,62 @@
+#%RAML 1.0 Library
+uses: 
+   general: ./generalReference.raml
+   Datastreams: ./Datastreams.raml
+   Locations: ./Locations.raml
+   
+types:
+  postThing:
+    displayName: Post data structure
+    type: object
+    properties:
+      name:
+        type: string
+        required: true
+      description:
+        type: string
+        required: true
+      properties:
+        type: object
+        required: false
+
+      Locations:
+         type: Locations.postLocation
+         required: false
+
+      HistoricalLocations:
+        type: object
+        required: false
+      Datastreams:
+        type: object
+        required: false
+
+
+  getThings:
+    displayName: thing
+    type: object
+    properties:
+      '@iot.count':
+        type: integer
+        required: true
+      '@iot.nextLink':
+        type: string
+        description: data
+        required: true
+      value:
+        type: getThing[]
+
+  getThing:
+    displayName: thing
+    type: object
+    properties:
+      '@iot.id': integer
+      '@iot.selfLink': string
+      name: string
+      desription: string
+      properties: object
+      'Datastreams@iot.navigationLink':
+        type: string #| DataStream.getDatastream[]
+      'HistoricalLocations@iot.navigationLink':
+        type: string #| HistoricalLocation[]
+      'Locations@iot.navigationLink':
+        type: string #| Locations.getLocation[] #object #Location[]

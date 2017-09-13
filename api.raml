@@ -1,0 +1,170 @@
+#%RAML 1.0
+title: SensorThings API
+version: v1.0
+protocols: [ HTTP, HTTPS ]
+baseUri: http://api.sampljmnmnehost.com/{version}
+mediaType: [ application/json]
+
+traits: 
+  count: !include ./traits/count.raml
+  expand: !include ./traits/expand.raml
+  filter: !include ./traits/filter.raml
+  orderby: !include ./traits/orderby.raml
+  resultFormat: !include ./traits/resultFormat.raml
+  select: !include ./traits/select.raml
+  skip: !include ./traits/skip.raml
+  top: !include ./traits/top.raml
+  
+uses:
+  resources: ./resourceTypes/resources.raml
+  Things: ./resourceTypes/Things.raml
+  Locations: ./resourceTypes/Locations.raml
+  HistoricalLocations: ./resourceTypes/HistoricalLocations.raml
+  Datastreams: ./resourceTypes/Datastreams.raml
+  Sensors: ./resourceTypes/Sensors.raml
+  ObservedProperties: ./resourceTypes/ObservedProperties.raml
+  Observations: ./resourceTypes/Observations.raml
+  FeaturesOfInterest: ./resourceTypes/FeaturesOfInterest.raml
+/v1.0:
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            type: resources.resourceEndPoint
+            example: !include ./examples/resources.raml
+              
+
+  /Things:
+    get:
+      is: [count,expand,filter,orderby,resultFormat,select,skip,top]
+      responses: 
+        200:
+          body:
+            application/json:
+              type: Things.getThings
+              
+    post:
+      body:
+        application/json:
+          type: Things.postThing
+      responses: 
+        200:
+          body: 
+            application/json:
+              type: Things.getThing
+
+
+
+  /Things({id}):
+    get:
+     responses: 
+      200:
+        body:
+          application/json:
+            type: Things.getThing
+    patch:
+     body:
+      application/json:
+        type: Things.postThing
+     responses: 
+      200:
+        body:
+          application/json:
+            type: Things.getThing
+    delete:
+     responses: 
+      200:
+#
+#    /Locations:
+#      post:
+#      get:
+#    /Datastreams:
+#      post:
+#      get:
+#      /Observations:
+#        post:
+#        get:
+#
+ 
+  /Locations:
+    get:
+      is: [count]
+      responses: 
+        200:
+          body:
+            application/json:
+              type: Locations.getLocations
+              
+    post:
+      body:
+        application/json:
+          type: Locations.postLocation
+      responses: 
+        200:
+          body: 
+            application/json:
+              type: Things.getThing
+              
+  /Locations({id}):
+    get:
+     responses: 
+      200:
+        body:
+          application/json:
+            type: Locations.getLocations
+    patch:
+     body:
+      application/json:
+        type: Locations.postLocation
+     responses: 
+      200:
+        body:
+          application/json:
+            type: Locations.getLocation
+    delete:
+     responses: 
+      200:
+#  /HistoricalLocations:
+#    /Locations:
+#
+#    /Things:
+#
+#    get:
+#    post:
+#
+#  /HistoricalLocations({id}):
+#    patch:
+#    post:
+#    delete:
+#  /Datastreams:
+#    get:
+#    post:
+#  /Datastreams({id}):
+#    get:
+#    patch:
+#    delete:
+#    /ObservedProperty:
+#      get:
+#  /Sensors:
+#    get:
+#    post:
+#  /Sensors({id}):
+#    get:
+#    patch:
+#    delete:
+#
+#  /ObservedProperties:
+#    post:
+#    get:
+#  /ObservedProperties({id}):
+#    get:
+#    patch:
+#    delete:
+#  /FeaturesOfInterest:
+#    post:
+#    get:
+#  /FeaturesOfInterest({id}):
+#    get:
+#    patch:
+#    delete:

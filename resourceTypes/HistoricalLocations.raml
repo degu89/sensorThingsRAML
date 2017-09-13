@@ -1,0 +1,43 @@
+#%RAML 1.0 Library
+types:
+  postHistoricalLocation:
+    displayName: Post location structure
+    type: object
+    properties:
+      name:
+        type: string
+        required: true
+      description:
+        type: string
+        required: true
+      encodingType:
+        type: string
+        required: true
+      location:
+        type: object
+
+  getHistoricalLocations:
+    displayName: thing
+    type: object
+    properties:
+      '@iot.count':
+        type: integer
+        required: true
+      '@iot.nextLink':
+        type: string
+        description: data
+        required: true
+      value:
+        type: getHistoricalLocation[]
+
+  getHistoricalLocation:
+    displayName: thing
+    type: object
+    properties:
+      '@iot.id': integer
+      '@iot.selfLink': string
+      time : datetime
+      'Locations@iot.navigationLink':
+        type: string #| Location[]
+      'Things@iot.navigationLink':
+        type: string #| getThing[]

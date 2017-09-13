@@ -1,0 +1,89 @@
+#%RAML 1.0 Library
+types:
+  postObservation:
+    displayName: Post Observation
+    type: object
+    properties:
+      phenomenonTime:
+        type: datetime
+        required: true
+      result:
+        type: string
+        required: true
+      resultTime:
+        type: datetime
+        required: true
+      resultQuality:
+        type: object
+        description: DQ_Element
+        required: false
+      validTime:
+        type: datetime
+        required: false
+      parameters:
+        type: object
+        required: false
+        description: JSON Object
+
+      Datastream:
+        type: object
+        required: true
+        description: datastreamObject
+
+      FeatureOfInterest:
+        type: object
+        required: false
+        description: mandatory (If it is not provided it will be automatically created based on the Location of associated Thing)
+
+
+
+  getObservations:
+    displayName: Observations
+    type: object
+    properties:
+      '@iot.count':
+        type: integer
+        required: true
+      '@iot.nextLink':
+        type: string
+        description: data
+        required: true
+      value:
+        type: getObservations[]
+
+  getObservation:
+    displayName: thing
+    type: object
+    properties:
+      '@iot.id': integer
+      '@iot.selfLink': string
+      phenomenonTime:
+        type: datetime
+        required: true
+      result:
+        type: string
+        required: true
+      resultTime:
+        type: datetime
+        required: true
+      resultQuality:
+        type: object
+        description: DQ_Element
+        required: false
+      validTime:
+        type: datetime
+        required: false
+      parameters:
+        type: object
+        required: false
+        description: JSON Object
+
+      Datastream:
+        type: object
+        required: true
+        description: datastreamObject
+
+      FeatureOfInterest:
+        type: object
+        required: false
+        description: mandatory (If it is not provided it will be automatically created based on the Location of associated Thing)

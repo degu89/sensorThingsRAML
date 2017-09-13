@@ -1,0 +1,45 @@
+#%RAML 1.0 Library
+types:
+  postObservedProperty:
+    displayName: Post ObservedProperty
+    type: object
+    properties:
+      name:
+        type: string
+        required: true
+      description:
+        type: string
+        required: true
+      definition:
+        type: string
+        required: true
+
+  getObservedProperties:
+    displayName: ObservedProperties
+    type: object
+    properties:
+      '@iot.count':
+        type: integer
+        required: true
+      '@iot.nextLink':
+        type: string
+        description: data
+        required: true
+      value:
+        type: getObservedProperty[]
+
+  getObservedProperty:
+    displayName: thing
+    type: object
+    properties:
+      '@iot.id': integer
+      '@iot.selfLink': string
+      name:
+        type: string
+        required: true
+      description:
+        type: string
+        required: true
+      definition:
+        type: string
+        required: true

@@ -1,0 +1,55 @@
+#%RAML 1.0 Library
+types:
+  postFeaturesOfInterest:
+    displayName: Post FeaturesOfInterest
+    type: object
+    properties:
+      name:
+        type: string
+        required: true
+      description:
+        type: string
+        required: true
+      encodingType:
+          type: string
+          required: true
+      location:
+          type: object
+          required: true
+
+  getFeaturesOfInterest:
+    displayName: FeaturesOfInterest
+    type: object
+    properties:
+      '@iot.count':
+        type: integer
+        required: true
+      '@iot.nextLink':
+        type: string
+        description: data
+        required: true
+      value:
+        type: getFeatureOfInterest[]
+
+  getFeatureOfInterest:
+    displayName: thing
+    type: object
+    properties:
+      '@iot.id': integer
+      '@iot.selfLink': string
+      name:
+        type: string
+        required: true
+      description:
+        type: string
+        required: true
+      encodingType:
+          type: string
+          required: true
+      location:
+          type: object
+          required: true
+
+      'Observations@iot.navigationLink':
+        type: string #| Observations[]
+        required: false

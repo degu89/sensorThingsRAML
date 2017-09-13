@@ -1,0 +1,21 @@
+#%RAML 1.0 Library
+
+types:
+  recourcesType:
+    displayName: List of available resources
+    type: object
+    properties:
+      name:
+        type: string
+        enum: [ Things, Locations, HistoricalLocations, Sensors, Observations, ObservedProperties, FeaturesOfInterest,Datastreams]
+        required: true
+      url:
+        type: string
+        required: true
+
+
+  resourceEndPoint:
+    type: object
+    properties:
+      value:
+        type:  recourcesType[]
